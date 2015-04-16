@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Todos</h1>
+<h1>Todos</h1>
 
 <table>
   <thead>
@@ -14,24 +14,24 @@
   <tbody>
     <%=form_tag todos_path,method:"get" do%>
 <%=hidden_field_tag :done,true%>
-<%=submit_tag "已完成"%>
+<%=submit_tag "done"%>
 <% end %>
 <%=form_tag todos_path,method:"get" do%>
 <%=hidden_field_tag :done,false%>
-<%=submit_tag "未完成"%>
+<%=submit_tag "not done"%>
 <% end %>
 <%=form_tag todos_path,method:"get" do%>
 <%=hidden_field_tag :done%>
-<%=submit_tag "顯示全部"%>
+<%=submit_tag "show all"%>
 <% end %>
     <% @todos.each do |todo| %>
       <tr>
         <td><%= todo.thing %></td>
         <td><%= todo.done %></td>
         <td><% if todo.done == true %>
-        <%= button_to '未完成', done_todo_path(todo), method: :post %>
+        <%= button_to 'not done', done_todo_path(todo), method: :post %>
         <% else  %>
-        <%= button_to '已完成', done_todo_path(todo), method: :post %>
+        <%= button_to 'done', done_todo_path(todo), method: :post %>
 <% end %>
 </td>
         <td><%= link_to 'Show', todo %></td>
