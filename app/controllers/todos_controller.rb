@@ -5,11 +5,11 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
-    if params[:be_done].present?
-      if params[:be_done]=="true"
-        @todos = @todos.where(:be_done =>true)
+    if params[:is_done].present?
+      if params[:is_done]=="true"
+        @todos = @todos.where(:is_done =>true)
       else
-        @todos = @todos.where(:be_done =>false)
+        @todos = @todos.where(:is_done =>false)
       end
     end
   end
@@ -70,10 +70,10 @@ class TodosController < ApplicationController
 
 def done
 @todo = Todo.find(params[:id])
-if @todo.be_done
-@todo.update_attributes(be_done: false)
+if @todo.done
+@todo.update_attributes(done: false)
 else
-@todo.update_attributes(be_done: true)
+@todo.update_attributes(done: true)
 end
 redirect_to(todos_path)
 end
