@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Todos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Thing</th>
+      <th>Done</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td><%= todo.thing %></td>
+        <td>
+          <% if todo.be_done %>
+          <%= '已完成' %>
+          <% else %>
+          <%= '未完成' %>
+<% end %>
+        </td>
+        <% if todo.be_done %>
+        <%= button_to '未完成', done_todo_path(todo), method: :post %>
+        <% else %>
+        <%= button_to '已完成', done_todo_path(todo), method: :post %>
+<% end %>
+        <td><%= link_to 'Show', todo %></td>
+        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Todo', new_todo_path %>
