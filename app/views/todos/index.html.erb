@@ -13,17 +13,13 @@
 
   <tbody>
     <%=form_tag todos_path,method:"get" do%>
-<%=hidden_field_tag :done,true%>
-<%=submit_tag "done"%>
-<% end %>
-<%=form_tag todos_path,method:"get" do%>
-<%=hidden_field_tag :done,false%>
-<%=submit_tag "not done"%>
-<% end %>
-<%=form_tag todos_path,method:"get" do%>
-<%=hidden_field_tag :done%>
-<%=submit_tag "show all"%>
-<% end %>
+    <%=hidden_field_tag :done,true%>
+    <%=submit_tag "done"%>
+    <% end %>
+    <%=form_tag todos_path,method:"get" do%>
+    <%=hidden_field_tag :done,false%>
+    <%=submit_tag "not done"%>
+    <% end %>
     <% @todos.each do |todo| %>
       <tr>
         <td><%= todo.thing %></td>
