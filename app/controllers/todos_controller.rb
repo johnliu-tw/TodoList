@@ -5,11 +5,11 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
-    if params[:is_done].present?
-      if params[:is_done]=="true"
-        @todos = @todos.where(:is_done =>true)
+    if params[:done].present?
+      if params[:done]=="true"
+        @todos = @todos.where(:done =>true)
       else
-        @todos = @todos.where(:is_done =>false)
+        @todos = @todos.where(:done =>false)
       end
     end
   end
@@ -35,7 +35,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
+        format.html { redirect_to @todo, notice: 'thing was successfully created.' }
         format.json { render :show, status: :created, location: @todo }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
+        format.html { redirect_to @todo, notice: 'thing was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
       else
         format.html { render :edit }
@@ -63,20 +63,20 @@ class TodosController < ApplicationController
   def destroy
     @todo.destroy
     respond_to do |format|
-      format.html { redirect_to todos_url, notice: 'Todo was successfully destroyed.' }
+      format.html { redirect_to todos_url, notice: 'thing was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-def done
-@todo = Todo.find(params[:id])
-if @todo.done
-@todo.update_attributes(done: false)
-else
-@todo.update_attributes(done: true)
-end
-redirect_to(todos_path)
-end
+  def done
+    @todo = Todo.find(params[:id])
+    if @todo.done
+    @todo.update_attributes(done: false)
+    else
+    @todo.update_attributes(done: true)
+    end
+    redirect_to(todos_path)
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
