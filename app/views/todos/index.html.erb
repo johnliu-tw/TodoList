@@ -12,15 +12,7 @@
   </thead>
 
   <tbody>
-    <%=form_tag todos_path,method:"get" do%>
-    <%=hidden_field_tag :done,true%>
-    <%=submit_tag "done"%>
-    <% end %>
-    <%=form_tag todos_path,method:"get" do%>
-    <%=hidden_field_tag :done,false%>
-    <%=submit_tag "not done"%>
-    <% end %>
-    <% @todos.each do |todo| %>
+      <% @todos.each do |todo| %>
       <tr>
         <td><%= todo.thing %></td>
         <td><%= todo.done %></td>
@@ -35,6 +27,15 @@
         <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <%=form_tag todos_path,method:"get" do%>
+    <%=hidden_field_tag :done,true%>
+    <%=submit_tag "done"%>
+    <% end %>
+    <%=form_tag todos_path,method:"get" do%>
+    <%=hidden_field_tag :done,false%>
+    <%=submit_tag "not done"%>
+    <% end %>
+    
   </tbody>
 </table>
 
